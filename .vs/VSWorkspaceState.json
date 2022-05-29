@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src",
-    "\\src\\app",
-    "\\src\\app\\home",
-    "\\src\\app\\products",
-    "\\src\\app\\products\\product-cart"
+    ""
   ],
-  "SelectedNode": "\\src\\app\\products\\product-cart\\product-cart.component.html",
+  "SelectedNode": "\\E:\\UI",
   "PreviewInSolutionExplorer": false
 }
