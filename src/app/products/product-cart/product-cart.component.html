@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Shopping Cart</h4>
+                        <p class="category text-danger" *ngIf="error">{{error}}</p>
+                        <p class="category text-success" *ngIf="success">{{success}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Product Name</th>
+                                            <th>Cost Per Unit</th>
+                                            <th>Quantity</th>
+                                            <th>NormalDayDiscount (%)</th>
+                                            <th>AddWeekendsDiscount (%)</th>
+                                            <th>Total Discount (%)</th>
+                                            <th>Delivery Charges (Rs)</th>
+                                            <th>Total Cost (Rs)</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let productCart of productCartList ; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{productCart.productName}}</td>
+                                            <td>{{productCart.costPerUnit}}</td>
+                                            <td>
+                                                <input type="number" [(ngModel)]="productCart.productQuantity" (change)="calculate(productCart)">
+                                                <label *ngIf="productCart.productQuantity==0" class="text-danger"> Product will be removed from cart </label>
+                                            </td>
+                                            <td>{{productCart.normalDayDiscount}} (%)</td>
+                                            <td>{{productCart.addWeekendsDiscount}} (%)</td>
+                                            <td>{{productCart.totalDiscount}} (%)</td>
+                                            <td>{{productCart.deliveryCharges}}(Rs)</td>
+                                            <td>{{productCart.totalCost}}(Rs)</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" (click)="updateCart(productCart)" style=" margin-bottom: 5%;"><i class="fa fa-file mr-2"></i>Save</a>
+                                                <a class="btn btn-danger btn-sm mt-2" (click)="deleteCart(productCart.cartID)">
+                                                    <i class="fa fa-trash mr-2"></i>  delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot *ngIf="productCartList.length==0" align="center">
+                                        <tr>
+                                            <td class="text-center bg-secondary" colspan="10">Cart is Empty</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-12" style="margin-left: 1%;">
+                                        <h6>
+                                            <p>
+                                                <span class="category">Cart total :-</span>
+                                                <span class="category">{{cart.cartTotal}} Rs</span>
+                                                <span *ngIf="cart.finalDiscount" class="category text-info">*After 10% discount on cart total</span>
+                                            </p>
+                                        </h6>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2" style="float: right; margin: 1%;">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-primary" (click)="downloadPdf()"><i class="fa fa-spinner mr-2"></i>Generate bill</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
